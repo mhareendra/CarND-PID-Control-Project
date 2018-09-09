@@ -1,7 +1,48 @@
+[//]: # (Image References)
+
+[gif3]: ./Videos/final_params.gif
+[gif2]: ./Videos/only_kd.gif
+[gif1]: ./Videos/only_kp.gif
+
 # CarND-Controls-PID
 Self-Driving Car Engineer Nanodegree Program
 
 ---
+### Discussion points
+
+#### Effect each of the P, I, D components:
+
+The 'P' (proportional) component controls how much to steer the car and the aim of the project is to steer it towards the center line of the road (and keep it there). It is opposite to the CTE reported by the simulator.
+
+The 'D' (differential) component helps dampen the oscillatory behavior of the car when it is being steered by the P component towards the center. If the 'D' component is absent, the car would oscillate continuously around the center without settling down.
+
+The 'I' (integral) component eliminates bias in the CTE which prevents the P and D components alone from steering the car to the center. This usually occurs because of factors like mis-alignment, strong winds or very difficult turns.
+
+#### Final Parameters:
+
+Through manual tuning, the following initial parameters were chosen: Kp = -0.135, Ki = 0, Kd = -0.95
+
+The reason to ignore Ki is because the simulator is a relatively ideal environment as far as the integral component is concerned.
+
+The P component is the major factor in steering the car and its value was determined before figuring out the D component. The best P value that would keep the car on the road was found and then the D component that would best reduce the oscillatory behavior was worked out. With just the P component, the car would drive all over the road in an oscillatory pattern. With just the D component, the car would not be able to steer towards the center.
+
+Also, another variable that was tweaked was the speed of the car. When the steering angle of the car is greater than a determined threshold, the speed is reduced by half to help in steering.
+
+#### Videos: 
+##### With just the P component:
+
+![alt text][gif1]
+
+##### With just the D component:
+
+![alt text][gif2]
+
+##### With tuned final parameters:
+
+![alt text][gif3]
+
+---
+# Original Udacity ReadMe
 
 ## Dependencies
 
